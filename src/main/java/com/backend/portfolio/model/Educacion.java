@@ -25,4 +25,6 @@ public class Educacion {
      private String fechaDesde;
      private String fechaHasta;
      private String urlLogo;
+
+
 }

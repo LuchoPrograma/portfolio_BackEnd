@@ -1,10 +1,13 @@
 
 package com.backend.portfolio.controller;
 
+import com.backend.portfolio.model.Educacion;
 import com.backend.portfolio.model.Persona;
+import com.backend.portfolio.service.IEducacionService;
 import com.backend.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
     
-    @Autowired 
-    private IPersonaService interPersona;
-    
     //About
+    @Autowired 
+    private IPersonaService interPersona;   
+    
     @GetMapping("/persona/get")
     public List<Persona> getAbout(){
         
@@ -44,8 +47,36 @@ public class Controller {
         return "La Persona fue creada correctamente";
     }
     
-
-   
     
+    @Autowired
+    private IEducacionService interEducacion;
     
+    @GetMapping("/educacion/get")
+    public List<Educacion> getEducation(){
+        
+        return interEducacion.getEducacion();
+    } 
+    @PostMapping("/educacion/add")
+    public String addEducation(@RequestBody Educacion educ){
+        interEducacion.addEducacion(educ);
+        return "La Educacion fue creada correctamente";
+    }
+    @DeleteMapping("educacion/borrar/{id}")
+    public String deleteEducation(@PathVariable Long id){
+        interEducacion.deleteEducacion(id);
+        return "Le educacion se eliminó correctamente";
+    }
+//    @PutMapping("/educacion/edit/{id}")
+//    public Educacion editEducation(@PathVariable Long id,
+//                                   @RequestParam ("titulo") String newTitulo,
+//                                   @RequestParam ("institucion") String newInstitucion,
+//                                   @RequestParam ("descripcion") String newDescripcion,
+//                                   @RequestParam ("fechaDesde") String newFechaDesde,
+//                                   @RequestParam ("fechaHasta") String newFechaHasta,
+//                                   @RequestParam ("urlLogo") String newUrlLogo
+//                                   ){
+//        
+//       return interEducacion.editEducacion(id, newTitulo, newInstitucion, newDescripcion, newFechaDesde, newFechaHasta, newUrlLogo);
+//    
+//    }
 }
