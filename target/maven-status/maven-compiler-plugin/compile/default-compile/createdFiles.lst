@@ -1,0 +1,14 @@
+com\backend\portfolio\service\PersonaService.class
+com\backend\portfolio\repository\EducacionRepository.class
+com\backend\portfolio\model\Educacion.class
+com\backend\portfolio\model\Habilidad.class
+com\backend\portfolio\repository\PersonaRepository.class
+com\backend\portfolio\model\Persona.class
+com\backend\portfolio\model\Proyecto.class
+com\backend\portfolio\service\EducacionService.class
+com\backend\portfolio\service\IEducacionService.class
+WebConfig.class
+com\backend\portfolio\service\IPersonaService.class
+com\backend\portfolio\controller\Controller.class
+com\backend\portfolio\model\Experiencia.class
+com\backend\portfolio\PortfolioApplication.class
