@@ -2,9 +2,11 @@ package com.backend.portfolio.controller;
 
 import com.backend.portfolio.model.Educacion;
 import com.backend.portfolio.model.Experiencia;
+import com.backend.portfolio.model.Habilidad;
 import com.backend.portfolio.model.Persona;
 import com.backend.portfolio.service.IEducacionService;
 import com.backend.portfolio.service.IExperienciaService;
+import com.backend.portfolio.service.IHabilidadService;
 import com.backend.portfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,9 +103,9 @@ public class Controller {
         interExp.deleteExperiencia(id);
         return "La experiencia fue eliminada correctamente";
     }
-    
+
     @PostMapping("/experiencia/add")
-    public String addExperience(@RequestBody Experiencia exp){
+    public String addExperience(@RequestBody Experiencia exp) {
         interExp.addExperiencia(exp);
         return "Nueva Experiencia agregada correctamente";
     }
@@ -119,7 +121,36 @@ public class Controller {
     ) {
 
         return interExp.editExperiencia(id, newCargo, newInstitucion, newDescripcion, newFechaDesde, newFechaHasta, newUrlLogo);
-        
+
     }
-    
+
+    @Autowired
+    private IHabilidadService interSkill;
+
+    @GetMapping("/habilidad/get")
+    public List<Habilidad> getSkill() {
+
+        return interSkill.getHabilidad();
+    }
+
+    @DeleteMapping("/habilidad/delete/{id}")
+    public String deleteSkill(@PathVariable Long id) {
+        interSkill.deleteHabilidad(id);
+        return "La habilidad fue eliminada correctamente";
+    }
+
+    @PostMapping("/habilidad/add")
+    public String addSkill(@RequestBody Habilidad skill) {
+        interSkill.addHabilidad(skill);
+        return "Nueva habilidad agregada correctamente";
+    }
+
+    @PutMapping("/habilidad/edit/{id}")
+    public String editSkill(@PathVariable Long id,
+            @RequestParam("habilidad") String editHabilidad,
+            @RequestParam("porcentaje") String editPorcentaje) {
+        interSkill.editHabilidad(id,editHabilidad,editPorcentaje);
+        
+        return "Habilidad editada correctamente";
+    }
 }
