@@ -4,10 +4,12 @@ import com.backend.portfolio.model.Educacion;
 import com.backend.portfolio.model.Experiencia;
 import com.backend.portfolio.model.Habilidad;
 import com.backend.portfolio.model.Persona;
+import com.backend.portfolio.model.Proyecto;
 import com.backend.portfolio.service.IEducacionService;
 import com.backend.portfolio.service.IExperienciaService;
 import com.backend.portfolio.service.IHabilidadService;
 import com.backend.portfolio.service.IPersonaService;
+import com.backend.portfolio.service.IProyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -124,6 +126,7 @@ public class Controller {
 
     }
 
+    //Habilidad
     @Autowired
     private IHabilidadService interSkill;
 
@@ -153,4 +156,41 @@ public class Controller {
         
         return "Habilidad editada correctamente";
     }
+    
+    //Proyects
+    
+    @Autowired
+    private IProyectoService interProyect;
+    
+    @GetMapping("/proyecto/get")
+    public List<Proyecto> getProject(){
+        return interProyect.getProyectos();
+    }
+    
+    @DeleteMapping("/proyecto/delete/{id}")
+    public String deleteProject(@PathVariable Long id){
+        interProyect.deleteProyecto(id);
+        return "Proyecto eliminado correctamente.";
+    }
+    
+    @PostMapping("/proyecto/add")
+    public String addProject(@RequestBody Proyecto project){
+        interProyect.addProyecto(project);
+        return "Proyecto añadido correctamente";
+    }
+    
+    @PutMapping("/proyecto/edit/{id}")
+    public String editProject(@PathVariable Long id,
+                              @RequestParam("nombre") String editNombre,
+                              @RequestParam("descripcion") String editDescripcion,
+                              @RequestParam("urlProyecto") String editUrlProyect,
+                              @RequestParam("fecha") String editFecha){
+        
+        interProyect.editProyecto(id, editNombre, editDescripcion, editUrlProyect, editFecha);
+        
+     return "Proyecto editado correctamente";
+        
+    }
+            
+    
 }
