@@ -1,6 +1,7 @@
 com\backend\portfolio\service\PersonaService.class
 com\backend\portfolio\repository\HabilidadRepository.class
 com\backend\portfolio\service\HabilidadService.class
+com\backend\portfolio\WebConfig.class
 com\backend\portfolio\service\IHabilidadService.class
 com\backend\portfolio\service\IProyectoService.class
 com\backend\portfolio\repository\EducacionRepository.class
@@ -14,7 +15,6 @@ com\backend\portfolio\service\ExperienciaService.class
 com\backend\portfolio\model\Proyecto.class
 com\backend\portfolio\service\EducacionService.class
 com\backend\portfolio\service\IEducacionService.class
-WebConfig.class
 com\backend\portfolio\service\IPersonaService.class
 com\backend\portfolio\repository\ExperienciaRepository.class
 com\backend\portfolio\service\ProyectoService.class
