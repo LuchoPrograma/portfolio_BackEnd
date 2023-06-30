@@ -27,11 +27,12 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public Persona editAbout(Long id, String editarNombre, String editarApellido, String editarAcercaDe, String editarUrlFoto) {
+    public Persona editAbout(Long id, String editarNombre, String editarApellido, String editarTitulo, String editarAcercaDe, String editarUrlFoto) {
          Persona perso = persoRepository.findById(id).orElse(null);
         
         perso.setNombre(editarNombre);
         perso.setApellido(editarApellido);
+        perso.setTitulo(editarTitulo);
         perso.setAcercaDe(editarAcercaDe);
         perso.setUrlFoto(editarUrlFoto);
         

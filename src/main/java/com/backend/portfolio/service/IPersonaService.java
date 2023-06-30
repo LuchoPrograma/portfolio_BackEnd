@@ -20,6 +20,7 @@ public interface IPersonaService {
     public Persona editAbout(Long id,
                               String editarNombre,
                               String editarApellido,
+                              String editarTitulo,
                               String editarAcercaDe,
                               String editarUrlFoto
                              );

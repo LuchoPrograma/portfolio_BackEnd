@@ -21,6 +21,7 @@ public class Persona {
     
     private String nombre;
     private String apellido;
+    private String titulo;
     private String acercaDe;
     private String urlFoto;
     
