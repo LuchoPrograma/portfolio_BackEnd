@@ -26,8 +26,18 @@ public class PersonaService implements IPersonaService {
         return listaPersonas;
     }
 
+    
+//    @Override
+//    public void editPersona(Long id, Persona changedPerso){
+//        Persona perso = persoRepository.findById(id).orElse(null);
+//        
+//        System.out.println(perso);
+//        persoRepository.save(perso);
+//    }
+    
+    
     @Override
-    public Persona editAbout(Long id, String editarNombre, String editarApellido, String editarTitulo, String editarAcercaDe, String editarUrlFoto) {
+    public void editAbout(Long id, String editarNombre, String editarApellido, String editarTitulo, String editarAcercaDe, String editarUrlFoto) {
          Persona perso = persoRepository.findById(id).orElse(null);
         
         perso.setNombre(editarNombre);
@@ -37,8 +47,7 @@ public class PersonaService implements IPersonaService {
         perso.setUrlFoto(editarUrlFoto);
         
         persoRepository.save(perso);
-        
-        return perso;
+       
     }
 
     @Override

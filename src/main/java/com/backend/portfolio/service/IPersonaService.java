@@ -17,7 +17,7 @@ public interface IPersonaService {
     
     public void savePersona(Persona perso);
     
-    public Persona editAbout(Long id,
+    public void editAbout(Long id,
                               String editarNombre,
                               String editarApellido,
                               String editarTitulo,

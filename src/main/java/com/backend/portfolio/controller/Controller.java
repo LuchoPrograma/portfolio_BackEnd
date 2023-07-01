@@ -5,13 +5,16 @@ import com.backend.portfolio.model.Experiencia;
 import com.backend.portfolio.model.Habilidad;
 import com.backend.portfolio.model.Persona;
 import com.backend.portfolio.model.Proyecto;
+import com.backend.portfolio.model.Usuario;
 import com.backend.portfolio.service.IEducacionService;
 import com.backend.portfolio.service.IExperienciaService;
 import com.backend.portfolio.service.IHabilidadService;
 import com.backend.portfolio.service.IPersonaService;
 import com.backend.portfolio.service.IProyectoService;
+import com.backend.portfolio.service.IUsuarioService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +22,51 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
+    
+    //User
+    @Autowired
+    private IUsuarioService interUser;
+    
+    @GetMapping("/usuario/get/{id}")
+    public Usuario getUsuario(@PathVariable Long id){
+        return interUser.getUsuario(id);
+    }
+    
+    
+    @PostMapping("/usuario/add")
+    public void newUser(@RequestBody Usuario newUser){
+        interUser.createUsuario(newUser);
+        
+    }
+    
+    
+    
+    @PostMapping("/usuario/autenticar")
+    public String authenticate(@RequestBody Usuario credentials){
+        Usuario user = interUser.getUsuario(1L);
+        
+        String nombreUsuario =  user.getUsername();
+        String nombreIngresante = credentials.getUsername();
+        String contraseñaUsuario =  user.getPassword();
+        String contraseñaIngresante = credentials.getPassword();
+        
+        
+        if ( nombreIngresante.equals(nombreUsuario) && ( contraseñaIngresante.equals(contraseñaUsuario)) ){
+            System.out.println("True indeed");
+            return "";
+        }else{
+            System.out.println("its false");
+            return "NOUP";
+        }
+  
+    }
+    
+    
 
     //About
     @Autowired
@@ -34,20 +78,19 @@ public class Controller {
         return interPersona.getAbout();
     }
 
-    @PutMapping("persona/editar/{id}")
-    public Persona editAbout(@PathVariable Long id,
+    
+//    public void editAbout(@PathVariable Long id, @RequestBody Persona perso){
+//       System.out.println(perso);
+//       interPersona.editPersona(id, perso);
+//    }
+    @PutMapping("persona/edit/{id}")
+    public void editAbout(@PathVariable Long id,
             @RequestParam("nombre") String editarNombre,
             @RequestParam("apellido") String editarApellido,
             @RequestParam("titulo") String editarTitulo,
             @RequestParam("acercaDe") String editarAcercaDe,
             @RequestParam("urlFoto") String editarUrlFoto) {
-
-        return interPersona.editAbout(id,
-                editarNombre,
-                editarApellido,
-                editarTitulo,
-                editarAcercaDe,
-                editarUrlFoto);
+        interPersona.editAbout(id, editarNombre, editarApellido, editarTitulo, editarAcercaDe, editarUrlFoto);
     }
 
     @PostMapping("/persona/crear")
@@ -169,9 +212,9 @@ public class Controller {
     }
     
     @PostMapping("/proyecto/add")
-    public String addProject(@RequestBody Proyecto project){
+    public void addProject(@RequestBody Proyecto project){
         interProyect.addProyecto(project);
-        return "Proyecto añadido correctamente";
+        
     }
     
     @PutMapping("/proyecto/edit/{id}")
