@@ -15,9 +15,11 @@ com\backend\portfolio\repository\HabilidadRepository.class
 com\backend\portfolio\service\HabilidadService.class
 com\backend\portfolio\service\IHabilidadService.class
 com\backend\portfolio\repository\ProyectoRepository.class
+com\backend\portfolio\service\IUsuarioService.class
 com\backend\portfolio\model\Educacion.class
 com\backend\portfolio\model\Habilidad.class
 com\backend\portfolio\repository\PersonaRepository.class
+com\backend\portfolio\service\UsuarioService.class
 com\backend\portfolio\service\ExperienciaService.class
 com\backend\portfolio\service\EducacionService.class
 com\backend\portfolio\service\IPersonaService.class
